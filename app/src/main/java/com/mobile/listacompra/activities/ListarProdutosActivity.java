@@ -1,9 +1,14 @@
 package com.mobile.listacompra.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.mobile.listacompra.R;
 import com.mobile.listacompra.adapters.AdapterListaProdutos;
@@ -36,6 +41,44 @@ public class ListarProdutosActivity extends AppCompatActivity {
         this.adapterListaProdutos = new AdapterListaProdutos(ListarProdutosActivity.this, this.produtoList);
 
         this.lsvProdutos.setAdapter(this.adapterListaProdutos);
+
+        this.lsvProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int posicao, long id) {
+                Produto produtoSelecionado = (Produto) adapterListaProdutos.getItem(posicao);
+                Toast.makeText(ListarProdutosActivity.this, "Produto: "+ produtoSelecionado.getNome(), Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder janelaDeEscolha = new AlertDialog.Builder(ListarProdutosActivity.this);
+
+                janelaDeEscolha.setTitle("Escolha:");
+                janelaDeEscolha.setMessage("O que deseja fazer com o produto selecionado?");
+
+                janelaDeEscolha.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.cancel();
+                    }
+                });
+
+                janelaDeEscolha.setNegativeButton("Excluir", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.cancel();
+                    }
+                });
+
+                janelaDeEscolha.setPositiveButton("Editar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.cancel();
+                    }
+                });
+                janelaDeEscolha.create().show();
+
+
+
+            }
+        });
 
     }
 }
