@@ -83,4 +83,26 @@ public class ProdutoDAO<listaProdutos> {
         return listaProdutos;
     }
 
+    public boolean excluirProdutoDAO(long pIdProduto){
+        SQLiteDatabase db = null;
+
+        try{
+            db = this.conexaoSQLite.getWritableDatabase();
+            db.delete (
+                "produtos",
+                        "id = ?",
+                        new String[]{String.valueOf(pIdProduto)}
+            );
+
+        }catch (Exception e){
+            Log.d("PRODUTODAO", "NÂO FOI POSSÍVEL DELETER PRODUTO");
+            return false;
+        }finally {
+            if (db != null){
+                db.close();
+            }
+        }
+        return true;
+    }
+
 }

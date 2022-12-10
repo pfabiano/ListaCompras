@@ -22,4 +22,8 @@ public class ProdutoController {
         return this.produtoDAO.getListaProdutosDAO();
     }
 
+    public boolean excluirProdutoController(long pIdProduto){
+        return this.produtoDAO.excluirProdutoDAO(pIdProduto);
+    }
+
 }
