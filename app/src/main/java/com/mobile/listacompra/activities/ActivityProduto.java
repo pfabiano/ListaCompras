@@ -2,12 +2,14 @@ package com.mobile.listacompra.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.mobile.listacompra.MainActivity;
 import com.mobile.listacompra.R;
 import com.mobile.listacompra.controller.ProdutoController;
 import com.mobile.listacompra.dbHelper.ConectSQLite;
@@ -22,6 +24,9 @@ public class ActivityProduto extends AppCompatActivity {
 
     private Button btnSalvarProduto;
 
+    private Button btnListarProdutos;
+
+
     private Produto produto;
 
     @Override
@@ -35,10 +40,13 @@ public class ActivityProduto extends AppCompatActivity {
         edtQuantidadeProduto = findViewById(R.id.edtQuantidadeProduto);
         edtPrecoProduto = findViewById(R.id.edtPrecoProduto);
 
+        this.btnListarProdutos = (Button) findViewById(R.id.btnListarProdutos);
+
         btnSalvarProduto = findViewById(R.id.btnSalvarProduto);
 
         this.clickBotaoSalvarProduto();
 
+        this.clickBotaoListar();
     }
 
     private void clickBotaoSalvarProduto(){
@@ -62,6 +70,7 @@ public class ActivityProduto extends AppCompatActivity {
                     Toast.makeText(ActivityProduto.this,"Todos campos são obrigatorios", Toast.LENGTH_LONG).show();
 
                 }
+
 
             }
         });
@@ -92,8 +101,20 @@ public class ActivityProduto extends AppCompatActivity {
         }else
             return null;
 
+
+
         return produto;
     }
 
+    private void clickBotaoListar(){
+        this.btnListarProdutos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityProduto.this, ListarProdutosActivity.class);
+                startActivity(intent);
+
+            }
+        });
+    }
 
 }

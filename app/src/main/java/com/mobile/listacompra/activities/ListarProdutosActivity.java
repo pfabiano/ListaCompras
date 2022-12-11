@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +27,8 @@ public class ListarProdutosActivity extends AppCompatActivity {
     private List<Produto> produtoList;
     private AdapterListaProdutos adapterListaProdutos;
 
+    private ProdutoController produtoController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,8 @@ public class ListarProdutosActivity extends AppCompatActivity {
 
         //TODO buscar produtos no banco
 
-        ProdutoController produtoController = new ProdutoController(ConectSQLite.getInstanciaConexao(ListarProdutosActivity.this));
+        this.produtoController = new ProdutoController(ConectSQLite.getInstanciaConexao(ListarProdutosActivity.this));
+
         produtoList = produtoController.getListaProdutosController();
 
         this.lsvProdutos = (ListView) findViewById(R.id.lsvProdutos);
@@ -65,12 +69,16 @@ public class ListarProdutosActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int which) {
 
                         boolean excluiu = produtoController.excluirProdutoController(produtoSelecionado.getId());
+
                         dialogInterface.cancel();
 
                         if(excluiu == true){
-                            Toast.makeText(ListarProdutosActivity.this, "Produto excluido com sucesso", Toast.LENGTH_SHORT);
+
+                            adapterListaProdutos.removerProduto(posicao);
+
+                            Toast.makeText(ListarProdutosActivity.this, "Produto excluido com sucesso", Toast.LENGTH_LONG);
                         }else{
-                            Toast.makeText(ListarProdutosActivity.this, "Erro ao excluido produto", Toast.LENGTH_SHORT);
+                            Toast.makeText(ListarProdutosActivity.this, "Erro ao excluido produto", Toast.LENGTH_LONG);
                         }
 
 
@@ -81,18 +89,27 @@ public class ListarProdutosActivity extends AppCompatActivity {
                 janelaDeEscolha.setPositiveButton("Editar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
-                        dialogInterface.cancel();
+
+                        Bundle bundleDadosProduto = new Bundle();
+
+                        bundleDadosProduto.putLong("id_produto", produtoSelecionado.getId());
+                        bundleDadosProduto.putString("nome_produto", produtoSelecionado.getNome());
+                        bundleDadosProduto.putDouble("preco_produto", produtoSelecionado.getPreco());
+                        bundleDadosProduto.putInt("estoque_produto", produtoSelecionado.getQuantidade());
+
+                        Intent intentEditarProdutos = new Intent(ListarProdutosActivity.this, EditarProdutosActivity.class);
+                        intentEditarProdutos.putExtras(bundleDadosProduto);
+                        startActivity(intentEditarProdutos);
+
                     }
                 });
 
-
-
                 janelaDeEscolha.create().show();
-
-
 
             }
         });
-
+    }
+    public void eventAtualizarProdutos(View view){
+        this.adapterListaProdutos.atualizar(this.produtoController.getListaProdutosController());
     }
 }

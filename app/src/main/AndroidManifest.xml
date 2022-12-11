@@ -14,18 +14,24 @@
         android:theme="@style/Theme.ListaCompra"
         tools:targetApi="31">
         <activity
+            android:name=".activities.EditarProdutosActivity"
+            android:exported="false"
+            android:label="Editar Item"/>
+        <activity
             android:name=".activities.ListarProdutosActivity"
             android:exported="false"
-            android:label="Lista de Produtos"/>
+            android:label="Lista de Itens" />
         <activity
             android:name=".activities.ActivityProduto"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Cadastrar Item"/>
         <activity
             android:name=".activities.ActivityVenda"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="Lista de Compras">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

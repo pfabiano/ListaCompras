@@ -3,11 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/goke2/AndroidStudioProjects/ListaCompra/app/src/main/res/layout/activity_editar_produtos.xml" value="0.1962962962962963" />
         <entry key="..\:/Users/goke2/AndroidStudioProjects/ListaCompra/app/src/main/res/layout/activity_listar_produtos.xml" value="0.1962962962962963" />
         <entry key="..\:/Users/goke2/AndroidStudioProjects/ListaCompra/app/src/main/res/layout/activity_main.xml" value="0.1962962962962963" />
         <entry key="..\:/Users/goke2/AndroidStudioProjects/ListaCompra/app/src/main/res/layout/activity_produto.xml" value="0.1962962962962963" />
         <entry key="..\:/Users/goke2/AndroidStudioProjects/ListaCompra/app/src/main/res/layout/activity_venda.xml" value="0.2" />
-        <entry key="..\:/Users/goke2/AndroidStudioProjects/ListaCompra/app/src/main/res/layout/layout_produto.xml" value="0.33" />
+        <entry key="..\:/Users/goke2/AndroidStudioProjects/ListaCompra/app/src/main/res/layout/layout_produto.xml" value="0.22" />
       </map>
     </option>
   </component>

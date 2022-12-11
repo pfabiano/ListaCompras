@@ -16,7 +16,7 @@ public class AdapterListaProdutos extends BaseAdapter {
     private Context context;
     private List<Produto> produtoList;
 
-    public AdapterListaProdutos(Context context, List<Produto> produtoList) {
+public AdapterListaProdutos(Context context, List<Produto> produtoList) {
         this.context = context;
         this.produtoList = produtoList;
     }
@@ -55,5 +55,11 @@ public class AdapterListaProdutos extends BaseAdapter {
         tvEstoqueProduto.setText(String.valueOf(this.produtoList.get(posicao).getQuantidade()));
 
         return v;
+    }
+
+    public void atualizar(List<Produto> pProduto){
+        this.produtoList.clear();
+        this.produtoList = pProduto;
+        this.notifyDataSetChanged();
     }
 }

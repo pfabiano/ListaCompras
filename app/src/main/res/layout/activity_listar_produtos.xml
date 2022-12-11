@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".activities.ListarProdutosActivity">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Atualizar lista"
+        android:onClick="eventAtualizarProdutos"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
+
+
     <ListView
         android:id="@+id/lsvProdutos"
         android:layout_width="match_parent"

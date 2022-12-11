@@ -89,7 +89,7 @@ public class ProdutoDAO<listaProdutos> {
         try{
             db = this.conexaoSQLite.getWritableDatabase();
             db.delete (
-                "produtos",
+                "produto",
                         "id = ?",
                         new String[]{String.valueOf(pIdProduto)}
             );
@@ -103,6 +103,40 @@ public class ProdutoDAO<listaProdutos> {
             }
         }
         return true;
+    }
+
+    public boolean atualizarProdutoDAO(Produto pProduto){
+        SQLiteDatabase db = null;
+
+        try{
+
+            db = this.conexaoSQLite.getWritableDatabase();
+
+            ContentValues produtoAtributos = new ContentValues();
+            produtoAtributos .put("nome",pProduto.getNome());
+            produtoAtributos .put("quantidade_em_estoque",pProduto.getQuantidade());
+            produtoAtributos .put("preco",pProduto.getPreco());
+
+
+            int atualizou = db.update("produto",
+                    produtoAtributos,
+                    "id = ?",
+                    new String[]{String.valueOf(pProduto.getId())}
+                    );
+            if(atualizou > 0){
+                return true;
+            }
+
+
+        }catch(Exception e){
+            Log.d("PRODUTODAO", "não foi possível atualizar o produto");
+            return false;
+        }finally {
+            if(db != null){
+                db.close();
+            }
+        }
+        return false;
     }
 
 }

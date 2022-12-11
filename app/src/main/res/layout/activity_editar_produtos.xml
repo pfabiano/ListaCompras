@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.ActivityProduto">
+    tools:context=".activities.EditarProdutosActivity">
+
 
     <EditText
         android:id="@+id/edtIdProduto"
-        android:hint="Código:"
+        android:hint="Còdigo de Barras:"
         android:inputType="numberSigned"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -50,8 +51,8 @@
         android:layout_height="25dp"/>
 
     <Button
-        android:id="@+id/btnSalvarProduto"
-        android:text="Cadastrar Produto"
+        android:id="@+id/btnSalvarAlteracoes"
+        android:text="Salvar alterações"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -64,7 +65,5 @@
         android:text="Listar Itens já cadatrados"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
-
 
 </LinearLayout>
